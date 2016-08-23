@@ -1,4 +1,5 @@
 # Build and Release Folders
+out/
 bin/
 bin-debug/
 bin-release/
@@ -13,6 +14,9 @@ bin-release/
 *.air
 *.ipa
 *.apk
+
+# macOS Folders
+.DS_Store
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
