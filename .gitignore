@@ -6,8 +6,17 @@ bin-release/
 [Oo]bj/ # FlashDevelop obj
 [Bb]in/ # FlashDevelop bin
 
-# Other files and folders
+# Eclipse / Flash Builder
 .settings/
+.flexProperties
+.FlexUnitSettings
+.actionScriptProperties
+
+# IntelliJ IDEA
+*.iws
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/dictionaries
 
 # Executables
 *.swf
@@ -17,7 +26,3 @@ bin-release/
 
 # macOS Folders
 .DS_Store
-
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
