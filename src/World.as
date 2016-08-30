@@ -1,6 +1,7 @@
 package
 {
     import starling.display.Image;
+    import starling.display.MovieClip;
     import starling.display.Sprite;
     import starling.textures.Texture;
 
@@ -8,6 +9,7 @@ package
     {
         private var _width:Number;
         private var _height:Number;
+        private var _bird:MovieClip;
 
         public function World(width:Number, height:Number)
         {
@@ -15,6 +17,7 @@ package
             _height = height;
 
             addBackground();
+            addBird();
         }
 
         private function addBackground():void
@@ -33,6 +36,31 @@ package
             cloud2.x = _width * 0.1;
             cloud2.y = _height * 0.2;
             addChild(cloud2);
+        }
+
+        private function addBird():void
+        {
+            var birdTextures:Vector.<Texture> = Game.assets.getTextures("bird-");
+            birdTextures.push(birdTextures[1]);
+
+            _bird = new MovieClip(birdTextures);
+            _bird.pivotX = 46;
+            _bird.pivotY = 45;
+            _bird.pixelSnapping = true;
+
+            addChild(_bird);
+            resetBird();
+        }
+
+        private function resetBird():void
+        {
+            _bird.x = _width / 3;
+            _bird.y = _height / 2;
+        }
+
+        public function advanceTime(passedTime:Number):void
+        {
+            _bird.advanceTime(passedTime);
         }
     }
 }

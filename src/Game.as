@@ -1,6 +1,7 @@
 package
 {
     import starling.display.Sprite;
+    import starling.events.Event;
     import starling.utils.AssetManager;
 
     public class Game extends Sprite
@@ -18,6 +19,13 @@ package
 
             _world = new World(stage.stageWidth, stage.stageHeight);
             addChild(_world);
+
+            addEventListener(Event.ENTER_FRAME, onEnterFrame);
+        }
+
+        private function onEnterFrame(event:Event, passedTime:Number):void
+        {
+            _world.advanceTime(passedTime);
         }
 
         public static function get assets():AssetManager
