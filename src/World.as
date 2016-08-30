@@ -1,5 +1,7 @@
 package
 {
+    import flash.geom.Rectangle;
+
     import starling.display.Image;
     import starling.display.MovieClip;
     import starling.display.Sprite;
@@ -7,9 +9,12 @@ package
 
     public class World extends Sprite
     {
+        private static const SCROLL_VELOCITY:Number = 130;
+
         private var _width:Number;
         private var _height:Number;
         private var _bird:MovieClip;
+        private var _ground:Image;
 
         public function World(width:Number, height:Number)
         {
@@ -17,8 +22,11 @@ package
             _height = height;
 
             addBackground();
+            addGround();
             addBird();
         }
+
+        // setup methods
 
         private function addBackground():void
         {
@@ -52,15 +60,39 @@ package
             resetBird();
         }
 
+        private function addGround():void
+        {
+            var tile:Texture = Game.assets.getTexture("ground");
+
+            _ground = new Image(tile);
+            _ground.y = _height - tile.height;
+            _ground.width = _width;
+            _ground.tileGrid = new Rectangle(0, 0, tile.width, tile.height);
+            addChild(_ground);
+        }
+
+        // helper methods
+
         private function resetBird():void
         {
             _bird.x = _width / 3;
             _bird.y = _height / 2;
         }
 
+        // time-related methods
+
         public function advanceTime(passedTime:Number):void
         {
+            advanceGround(passedTime);
             _bird.advanceTime(passedTime);
+        }
+
+        private function advanceGround(passedTime:Number):void
+        {
+            var distance:Number = SCROLL_VELOCITY * passedTime;
+
+            _ground.tileGrid.x -= distance;
+            _ground.tileGrid = _ground.tileGrid;
         }
     }
 }
