@@ -2,6 +2,9 @@ package
 {
     import starling.display.Sprite;
     import starling.events.Event;
+    import starling.events.Touch;
+    import starling.events.TouchEvent;
+    import starling.events.TouchPhase;
     import starling.utils.AssetManager;
 
     public class Game extends Sprite
@@ -21,11 +24,21 @@ package
             addChild(_world);
 
             addEventListener(Event.ENTER_FRAME, onEnterFrame);
+            stage.addEventListener(TouchEvent.TOUCH, onTouch);
         }
 
         private function onEnterFrame(event:Event, passedTime:Number):void
         {
             _world.advanceTime(passedTime);
+        }
+
+        private function onTouch(event:TouchEvent):void
+        {
+            var touch:Touch = event.getTouch(stage, TouchPhase.BEGAN);
+            if (touch)
+            {
+                _world.flapBird();
+            }
         }
 
         public static function get assets():AssetManager
