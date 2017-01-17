@@ -14,6 +14,13 @@ package
         private static const GRAVITY:Number = 800;
         private static const BIRD_RADIUS:Number = 18;
 
+        public static const BIRD_CRASHED:String = "birdCrashed";
+
+        public static const PHASE_IDLE:String = "phaseIdle";
+        public static const PHASE_PLAYING:String = "phasePlaying";
+        public static const PHASE_CRASHED:String = "phaseCrashed";
+
+        private var _phase:String;
         private var _width:Number;
         private var _height:Number;
         private var _ground:Image;
@@ -22,6 +29,7 @@ package
 
         public function World(width:Number, height:Number)
         {
+            _phase = PHASE_IDLE;
             _width = width;
             _height = height;
 
@@ -75,6 +83,19 @@ package
             addChild(_ground);
         }
 
+        // game control
+
+        public function start():void
+        {
+            _phase = PHASE_PLAYING;
+        }
+
+        public function reset():void
+        {
+            _phase = PHASE_IDLE;
+            resetBird();
+        }
+
         // helper methods
 
         private function resetBird():void
@@ -86,11 +107,19 @@ package
         private function checkForCollisions():void
         {
             var bottom:Number = _ground.y - BIRD_RADIUS;
+            var collision:Boolean = false;
 
             if (_bird.y > bottom)
             {
                 _bird.y = bottom;
                 _birdVelocity = 0;
+                collision = true;
+            }
+
+            if (collision)
+            {
+                _phase = PHASE_CRASHED;
+                dispatchEventWith(BIRD_CRASHED);
             }
         }
 
@@ -103,10 +132,17 @@ package
 
         public function advanceTime(passedTime:Number):void
         {
-            _bird.advanceTime(passedTime);
-            advanceGround(passedTime);
-            advancePhysics(passedTime);
-            checkForCollisions();
+            if (_phase == PHASE_IDLE || _phase == PHASE_PLAYING)
+            {
+                _bird.advanceTime(passedTime);
+                advanceGround(passedTime);
+            }
+
+            if (_phase == PHASE_PLAYING)
+            {
+                advancePhysics(passedTime);
+                checkForCollisions();
+            }
         }
 
         private function advanceGround(passedTime:Number):void
@@ -122,5 +158,9 @@ package
             _bird.y += _birdVelocity * passedTime;
             _birdVelocity += GRAVITY * passedTime;
         }
+
+        // properties
+
+        public function get phase():String { return _phase; }
     }
 }

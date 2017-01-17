@@ -1,5 +1,6 @@
 package
 {
+    import starling.core.Starling;
     import starling.display.Sprite;
     import starling.events.Event;
     import starling.events.Touch;
@@ -21,10 +22,16 @@ package
             sAssets = assets;
 
             _world = new World(stage.stageWidth, stage.stageHeight);
+            _world.addEventListener(World.BIRD_CRASHED, onBirdCollided);
             addChild(_world);
 
             addEventListener(Event.ENTER_FRAME, onEnterFrame);
             stage.addEventListener(TouchEvent.TOUCH, onTouch);
+        }
+
+        private function restart():void
+        {
+            _world.reset();
         }
 
         private function onEnterFrame(event:Event, passedTime:Number):void
@@ -32,11 +39,19 @@ package
             _world.advanceTime(passedTime);
         }
 
+        private function onBirdCollided():void
+        {
+            Starling.juggler.delayCall(restart, 1.5);
+        }
+
         private function onTouch(event:TouchEvent):void
         {
             var touch:Touch = event.getTouch(stage, TouchPhase.BEGAN);
             if (touch)
             {
+                if (_world.phase == World.PHASE_IDLE)
+                    _world.start();
+
                 _world.flapBird();
             }
         }
