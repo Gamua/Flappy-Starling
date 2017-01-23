@@ -13,8 +13,11 @@ package
         private static const FLAP_VELOCITY:Number = -300;
         private static const GRAVITY:Number = 800;
         private static const BIRD_RADIUS:Number = 18;
+        private static const OBSTACLE_DISTANCE:Number = 180;
+        private static const OBSTACLE_GAP_HEIGHT:Number = 170;
 
         public static const BIRD_CRASHED:String = "birdCrashed";
+        public static const OBSTACLE_PASSED:String = "obstaclePassed";
 
         public static const PHASE_IDLE:String = "phaseIdle";
         public static const PHASE_PLAYING:String = "phasePlaying";
@@ -24,8 +27,12 @@ package
         private var _width:Number;
         private var _height:Number;
         private var _ground:Image;
+        private var _obstacles:Sprite;
         private var _bird:MovieClip;
         private var _birdVelocity:Number = 0.0;
+
+        private var _currentX:Number;
+        private var _lastObstacleX:Number;
 
         public function World(width:Number, height:Number)
         {
@@ -34,6 +41,7 @@ package
             _height = height;
 
             addBackground();
+            addObstacleSprite();
             addGround();
             addBird();
         }
@@ -75,7 +83,6 @@ package
         private function addGround():void
         {
             var tile:Texture = Game.assets.getTexture("ground");
-
             _ground = new Image(tile);
             _ground.y = _height - tile.height;
             _ground.width = _width;
@@ -83,16 +90,34 @@ package
             addChild(_ground);
         }
 
+        private function addObstacleSprite():void
+        {
+            _obstacles = new Sprite();
+            addChild(_obstacles);
+        }
+
+        private function addObstacle():void
+        {
+            var minY:Number = OBSTACLE_GAP_HEIGHT / 2;
+            var maxY:Number = _ground.y - OBSTACLE_GAP_HEIGHT / 2;
+            var obstacle:Obstacle = new Obstacle(OBSTACLE_GAP_HEIGHT);
+            obstacle.y = minY + Math.random() * (maxY - minY);
+            obstacle.x = _width + obstacle.width / 2;
+            _obstacles.addChild(obstacle);
+        }
+
         // game control
 
         public function start():void
         {
             _phase = PHASE_PLAYING;
+            _currentX = _lastObstacleX = 0;
         }
 
         public function reset():void
         {
             _phase = PHASE_IDLE;
+            _obstacles.removeChildren(0, -1, true);
             resetBird();
         }
 
@@ -140,6 +165,8 @@ package
 
             if (_phase == PHASE_PLAYING)
             {
+                _currentX += SCROLL_VELOCITY * passedTime;
+                advanceObstacles(passedTime);
                 advancePhysics(passedTime);
                 checkForCollisions();
             }
@@ -157,6 +184,30 @@ package
         {
             _bird.y += _birdVelocity * passedTime;
             _birdVelocity += GRAVITY * passedTime;
+        }
+
+        private function advanceObstacles(passedTime:Number):void
+        {
+            if (_currentX >= _lastObstacleX + OBSTACLE_DISTANCE)
+            {
+                _lastObstacleX = _currentX;
+                addObstacle();
+            }
+
+            var obstacle:Obstacle;
+            var numObstacles:int = _obstacles.numChildren;
+
+            for (var i:int=0; i<numObstacles; ++i)
+            {
+                obstacle = _obstacles.getChildAt(i) as Obstacle;
+
+                if (obstacle.x < -obstacle.width)
+                {
+                    i--; numObstacles--;
+                    obstacle.removeFromParent(true);
+                }
+                else obstacle.x -= passedTime * SCROLL_VELOCITY;
+            }
         }
 
         // properties
