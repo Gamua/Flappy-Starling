@@ -37,6 +37,32 @@ package
 
         public function collidesWithBird(birdX:Number, birdY:Number, birdRadius:Number):Boolean
         {
+            // check if bird is completely left or right of the obstacle
+            if (birdX + birdRadius < x - _radius || birdX - birdRadius > x + _radius)
+                return false;
+
+            var bottomY:Number = y + _gapHeight / 2;
+            var topY:Number = y - _gapHeight / 2;
+
+            // check if bird is within gap
+            if (birdY < topY || birdY > bottomY)
+                return true;
+
+            // check for collision with circular end pieces
+            var distX:Number = x - birdX;
+            var distY:Number;
+
+            // top trunk
+            distY = topY - birdY;
+            if (Math.sqrt(distX * distX + distY * distY) < _radius + birdRadius)
+                return true;
+
+            // bottom trunk
+            distY = bottomY - birdY;
+            if (Math.sqrt(distX * distX + distY * distY) < _radius + birdRadius)
+                return true;
+
+            // bird flies through in-between the circles
             return false;
         }
 

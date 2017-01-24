@@ -140,6 +140,25 @@ package
                 _birdVelocity = 0;
                 collision = true;
             }
+            else
+            {
+                for (var i:int=0; i < _obstacles.numChildren; ++i)
+                {
+                    var obstacle:Obstacle = _obstacles.getChildAt(i) as Obstacle;
+
+                    if (!obstacle.passed && _bird.x > obstacle.x)
+                    {
+                        obstacle.passed = true;
+                        dispatchEventWith(OBSTACLE_PASSED, true);
+                    }
+
+                    if (obstacle.collidesWithBird(_bird.x, _bird.y, BIRD_RADIUS))
+                    {
+                        collision = true;
+                        break;
+                    }
+                }
+            }
 
             if (collision)
             {
