@@ -1,5 +1,7 @@
 package
 {
+    import flash.net.SharedObject;
+
     import starling.core.Starling;
     import starling.display.Sprite;
     import starling.events.Event;
@@ -21,9 +23,12 @@ package
         private var _world:World;
         private var _score:int;
         private var _scoreLabel:TextField;
+        private var _sharedObject:SharedObject;
 
         public function Game()
-        { }
+        {
+            _sharedObject = SharedObject.getLocal("flappy-data");
+        }
 
         public function start(assets:AssetManager):void
         {
@@ -55,6 +60,9 @@ package
 
         private function onBirdCollided():void
         {
+            if (_score > topScore)
+                topScore = _score;
+
             Starling.juggler.delayCall(restart, 1.5);
         }
 
@@ -84,6 +92,16 @@ package
         {
             _score = value;
             _scoreLabel.text = value.toString();
+        }
+
+        private function get topScore():int
+        {
+            return int(_sharedObject.data["topScore"]);
+        }
+
+        private function set topScore(value:int):void
+        {
+            _sharedObject.data["topScore"] = value;
         }
 
         public static function get assets():AssetManager
