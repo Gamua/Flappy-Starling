@@ -23,6 +23,7 @@ package
         private var _world:World;
         private var _score:int;
         private var _scoreLabel:TextField;
+        private var _title:TitleOverlay;
         private var _sharedObject:SharedObject;
 
         public function Game()
@@ -43,14 +44,34 @@ package
             _scoreLabel.visible = false;
             addChild(_scoreLabel);
 
+            _title = new TitleOverlay(stage.stageWidth, stage.stageHeight);
+            addChild(_title);
+
             addEventListener(Event.ENTER_FRAME, onEnterFrame);
             stage.addEventListener(TouchEvent.TOUCH, onTouch);
+
+            showTitle();
         }
 
         private function restart():void
         {
             _scoreLabel.visible = false;
             _world.reset();
+            showTitle();
+        }
+
+        private function showTitle():void
+        {
+            _title.alpha = 0;
+            _title.topScore = topScore;
+
+            Starling.juggler.tween(_title, 1.0, { alpha: 1.0 });
+        }
+
+        private function hideTitle():void
+        {
+            Starling.juggler.removeTweens(_title);
+            Starling.juggler.tween(_title, 0.5, { alpha: 0.0 });
         }
 
         private function onEnterFrame(event:Event, passedTime:Number):void
@@ -78,6 +99,7 @@ package
             {
                 if (_world.phase == World.PHASE_IDLE)
                 {
+                    hideTitle();
                     this.score = 0;
                     _scoreLabel.visible = true;
                     _world.start();
