@@ -28,5 +28,16 @@ package
 
         [Embed(source="../assets/fonts/1x/bradybunch.png")]
         public static const bradybunch:Class;
+
+        // Sounds
+
+        [Embed(source="../assets/sounds/flap.mp3")]
+        public static const flap:Class;
+
+        [Embed(source="../assets/sounds/pass.mp3")]
+        public static const pass:Class;
+
+        [Embed(source="../assets/sounds/crash.mp3")]
+        public static const crash:Class;
     }
 }

@@ -85,11 +85,13 @@ package
                 topScore = _score;
 
             Starling.juggler.delayCall(restart, 1.5);
+            assets.playSound("crash");
         }
 
         private function onObstaclePassed():void
         {
             this.score += 1;
+            assets.playSound("pass");
         }
 
         private function onTouch(event:TouchEvent):void
@@ -105,7 +107,11 @@ package
                     _world.start();
                 }
 
-                _world.flapBird();
+                if (_world.phase == World.PHASE_PLAYING)
+                {
+                    _world.flapBird();
+                    assets.playSound("flap");
+                }
             }
         }
 
