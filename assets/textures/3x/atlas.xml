@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:63ea9fa4f08f718683df71b7054cb97e:7193628c729d3fae2e83304c99e5953d:6a6e6fa3f501222eca20c86df75dc199$ -->
+<TextureAtlas imagePath="atlas.png" width="1092" height="1774">
+    <SubTexture name="bird-1" x="388" y="1438" width="225" height="203" frameX="-23" frameY="-6" frameWidth="255" frameHeight="213"/>
+    <SubTexture name="bird-2" x="615" y="1438" rotated="true" width="137" height="246" frameX="-3" frameY="-62" frameWidth="255" frameHeight="213"/>
+    <SubTexture name="bird-3" x="325" y="1643" width="234" height="130" frameX="-15" frameY="-57" frameWidth="255" frameHeight="213"/>
+    <SubTexture name="box" x="971" y="1533" width="98" height="98" frameX="-2" frameY="-2" frameWidth="102" frameHeight="102"/>
+    <SubTexture name="bush" x="891" y="1533" rotated="true" width="78" height="213"/>
+    <SubTexture name="button" x="971" y="1633" width="98" height="98" frameX="-2" frameY="-2" frameWidth="102" frameHeight="102"/>
+    <SubTexture name="cloud-1" x="1" y="1245" width="385" height="192" frameX="0" frameY="-2" frameWidth="385" frameHeight="217"/>
+    <SubTexture name="cloud-2" x="1" y="1439" width="385" height="192" frameX="0" frameY="-2" frameWidth="385" frameHeight="217"/>
+    <SubTexture name="cloud-3" x="388" y="1245" width="385" height="191" frameX="0" frameY="-2" frameWidth="385" frameHeight="217"/>
+    <SubTexture name="grass" x="561" y="1686" rotated="true" width="90" height="87"/>
+    <SubTexture name="ground" x="754" y="1533" rotated="true" width="135" height="240"/>
+    <SubTexture name="obstacle-bottom" x="789" y="1" width="150" height="1530"/>
+    <SubTexture name="obstacle-top" x="941" y="1" width="150" height="1530"/>
+    <SubTexture name="sky" x="1" y="1" rotated="true" width="786" height="1242" frameX="0" frameY="-9" frameWidth="1242" frameHeight="795"/>
+    <SubTexture name="tap-indicator" x="1" y="1633" width="322" height="124" frameX="-5" frameY="-4" frameWidth="330" frameHeight="132"/>
+</TextureAtlas>

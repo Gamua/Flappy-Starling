@@ -1,17 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="Flex" version="4">
-  <component name="FlexBuildConfigurationManager" active="flappy-starling">
+  <component name="FlexBuildConfigurationManager" active="flappy-starling-mobile">
     <configurations>
-      <configuration name="flappy-starling" pure-as="true" main-class="FlappyStarling" output-file="flappy-starling.swf" output-folder="$MODULE_DIR$/out">
-        <dependencies target-player="21.0">
+      <configuration name="flappy-starling-mobile" target-platform="Mobile" pure-as="true" main-class="FlappyStarlingMobile" output-file="flappy-starling-mobile.swf" output-folder="$MODULE_DIR$/out">
+        <dependencies>
           <entries>
-            <entry library-id="6ccadb9a-f52f-4857-93f4-a86ef42691cf">
+            <entry library-id="c7e89db5-2f6d-42a3-a20f-d72a26a76790">
               <dependency linkage="Merged" />
             </entry>
           </entries>
-          <sdk name="air-21" />
+          <sdk name="air-25" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <map>
+            <entry key="compiler.define" value="" />
+          </map>
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/FlappyStarling-app.xml" package-file-name="flappy-starling-mobile">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="assets" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
+          </files-to-package>
+        </packaging-android>
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/FlappyStarling-app.xml" package-file-name="flappy-starling-mobile">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="assets" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
+          </files-to-package>
+          <AirSigningOptions keystore-path="$MODULE_DIR$/../../library/ios/daniel_developer_certificate.p12" provisioning-profile-path="$MODULE_DIR$/../../library/ios/iOS_Team_Provisioning_Profile.mobileprovision" />
+        </packaging-ios>
+      </configuration>
+      <configuration name="flappy-starling-web" pure-as="true" main-class="FlappyStarlingWeb" output-file="flappy-starling-web.swf" output-folder="$MODULE_DIR$/out">
+        <dependencies target-player="25.0">
+          <entries>
+            <entry library-id="84fe4134-e6a6-40ca-a1ef-f9f8f03b0d3c">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="air-25" />
+        </dependencies>
+        <compiler-options>
+          <map>
+            <entry key="compiler.debug.swf" value="false" />
+            <entry key="compiler.define" value="" />
+          </map>
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />
@@ -24,11 +58,21 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="air-21" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="air-25" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="6ccadb9a-f52f-4857-93f4-a86ef42691cf" />
+        <properties id="c7e89db5-2f6d-42a3-a20f-d72a26a76790" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/starling.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="84fe4134-e6a6-40ca-a1ef-f9f8f03b0d3c" />
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/starling.swc!/" />
         </CLASSES>

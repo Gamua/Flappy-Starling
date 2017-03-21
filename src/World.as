@@ -15,6 +15,7 @@ package
         private static const BIRD_RADIUS:Number = 18;
         private static const OBSTACLE_DISTANCE:Number = 180;
         private static const OBSTACLE_GAP_HEIGHT:Number = 170;
+        private static const OBSTACLE_Y_RANGE:Number = 270;
 
         public static const BIRD_CRASHED:String = "birdCrashed";
         public static const OBSTACLE_PASSED:String = "obstaclePassed";
@@ -98,8 +99,12 @@ package
 
         private function addObstacle():void
         {
-            var minY:Number = OBSTACLE_GAP_HEIGHT / 2;
-            var maxY:Number = _ground.y - OBSTACLE_GAP_HEIGHT / 2;
+            // On a very "high" screen, we don't want the gaps to spread to far from each other
+            // (which would make the game really hard), so we limit the range of y-coordinates.
+
+            var yRange:int = Math.min(OBSTACLE_Y_RANGE, _ground.y - OBSTACLE_GAP_HEIGHT);
+            var minY:Number = (_ground.y - yRange) / 2;
+            var maxY:Number =  _ground.y - minY;
             var obstacle:Obstacle = new Obstacle(OBSTACLE_GAP_HEIGHT);
             obstacle.y = minY + Math.random() * (maxY - minY);
             obstacle.x = _width + obstacle.width / 2;

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:63ea9fa4f08f718683df71b7054cb97e:7193628c729d3fae2e83304c99e5953d:6a6e6fa3f501222eca20c86df75dc199$ -->
+<TextureAtlas imagePath="atlas.png" width="1022" height="870">
+    <SubTexture name="bird-1" x="1" y="732" width="151" height="137" frameX="-15" frameY="-3" frameWidth="170" frameHeight="142"/>
+    <SubTexture name="bird-2" x="831" y="205" rotated="true" width="92" height="166" frameX="-1" frameY="-41" frameWidth="170" frameHeight="142"/>
+    <SubTexture name="bird-3" x="931" y="367" rotated="true" width="88" height="158" frameX="-9" frameY="-37" frameWidth="170" frameHeight="142"/>
+    <SubTexture name="box" x="931" y="745" width="66" height="66" frameX="-1" frameY="-1" frameWidth="68" frameHeight="68"/>
+    <SubTexture name="bush" x="831" y="501" rotated="true" width="52" height="142"/>
+    <SubTexture name="button" x="831" y="373" width="66" height="66" frameX="-1" frameY="-1" frameWidth="68" frameHeight="68"/>
+    <SubTexture name="cloud-1" x="154" y="732" width="257" height="129" frameX="0" frameY="-1" frameWidth="257" frameHeight="145"/>
+    <SubTexture name="cloud-2" x="413" y="732" width="257" height="129" frameX="0" frameY="-1" frameWidth="257" frameHeight="145"/>
+    <SubTexture name="cloud-3" x="672" y="732" width="257" height="128" frameX="0" frameY="-1" frameWidth="257" frameHeight="145"/>
+    <SubTexture name="grass" x="831" y="441" rotated="true" width="60" height="58"/>
+    <SubTexture name="ground" x="931" y="205" rotated="true" width="90" height="160"/>
+    <SubTexture name="obstacle-bottom" x="1" y="1" rotated="true" width="1020" height="100"/>
+    <SubTexture name="obstacle-top" x="1" y="103" rotated="true" width="1020" height="100"/>
+    <SubTexture name="sky" x="1" y="205" width="828" height="525" frameX="0" frameY="-5" frameWidth="828" frameHeight="530"/>
+    <SubTexture name="tap-indicator" x="931" y="527" rotated="true" width="84" height="216" frameX="-3" frameY="-2" frameWidth="220" frameHeight="88"/>
+</TextureAtlas>

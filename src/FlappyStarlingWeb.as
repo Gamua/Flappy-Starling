@@ -7,11 +7,11 @@ package
     import starling.utils.AssetManager;
 
     [SWF(width="320", height="480", frameRate="60", backgroundColor="#d1f4f7")]
-    public class FlappyStarling extends Sprite
+    public class FlappyStarlingWeb extends Sprite
     {
         private var _starling:Starling;
 
-        public function FlappyStarling()
+        public function FlappyStarlingWeb()
         {
             _starling = new Starling(Game, stage);
             _starling.addEventListener(Event.ROOT_CREATED, onRootCreated);
