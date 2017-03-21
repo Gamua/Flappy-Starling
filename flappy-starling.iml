@@ -42,7 +42,7 @@
         </dependencies>
         <compiler-options>
           <map>
-            <entry key="compiler.debug.swf" value="false" />
+            <entry key="compiler.debug.swf" value="true" />
             <entry key="compiler.define" value="" />
           </map>
         </compiler-options>
