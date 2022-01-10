@@ -2,9 +2,9 @@ package
 {
     import flash.display.Sprite;
 
+    import starling.assets.AssetManager;
     import starling.core.Starling;
     import starling.events.Event;
-    import starling.utils.AssetManager;
 
     [SWF(width="320", height="480", frameRate="60", backgroundColor="#d1f4f7")]
     public class FlappyStarlingWeb extends Sprite

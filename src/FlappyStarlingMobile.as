@@ -5,9 +5,9 @@ package
     import flash.events.Event;
     import flash.filesystem.File;
 
+    import starling.assets.AssetManager;
     import starling.core.Starling;
     import starling.events.Event;
-    import starling.utils.AssetManager;
     import starling.utils.StringUtil;
 
     import utils.ScreenSetup;
@@ -51,9 +51,13 @@ package
             );
 
             assets.loadQueue(
-                function(ratio:Number):void
+                function onComplete():void
                 {
-                    if (ratio == 1.0) onComplete(assets);
+                    startGame(assets);
+                },
+                function onError(error:String):void
+                {
+                    trace("Error while loading assets: " + error);
                 });
         }
 

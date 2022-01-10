@@ -2,6 +2,7 @@ package
 {
     import flash.net.SharedObject;
 
+    import starling.assets.AssetManager;
     import starling.core.Starling;
     import starling.display.Sprite;
     import starling.events.Event;
@@ -11,7 +12,7 @@ package
     import starling.text.BitmapFont;
     import starling.text.TextField;
     import starling.text.TextFormat;
-    import starling.utils.AssetManager;
+    import starling.utils.Align;
     import starling.utils.Color;
 
     public class Game extends Sprite
