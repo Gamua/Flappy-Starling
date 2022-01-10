@@ -23,9 +23,13 @@ package
             var assets:AssetManager = new AssetManager();
             assets.enqueue(EmbeddedAssets);
             assets.loadQueue(
-                function(ratio:Number):void
+                function onComplete():void
                 {
-                    if (ratio == 1.0) game.start(assets);
+                    game.start(assets);
+                },
+                function onError(error:String):void
+                {
+                    trace("Error while loading assets: " + error);
                 });
         }
     }
